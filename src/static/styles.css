@@ -1,0 +1,106 @@
+@charset "utf-8";
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: "Open Sans", sans-serif;
+  display: block;
+  margin: 0px auto;
+  text-align: center;
+  color: #444444;
+}
+
+body {
+  margin: 0px;
+}
+
+h1 {
+  margin: 50px auto 30px;
+}
+
+.side-by-side {
+  display: table-cell;
+  vertical-align: middle;
+  position: relative;
+}
+
+.text {
+  font-weight: 600;
+  font-size: 19px;
+  width: 200px;
+}
+
+.reading {
+  font-weight: 300;
+  font-size: 50px;
+  padding-right: 25px;
+}
+
+.temperature .reading {
+  color: #f29c1f;
+}
+
+.humidity .reading {
+  color: #3b97d3;
+}
+
+.light .reading {
+  color: #FFE75A;
+}
+
+.superscript {
+  font-size: 17px;
+  font-weight: 600;
+  position: absolute;
+  top: 10px;
+}
+
+.data {
+  padding: 10px;
+}
+
+.container {
+  display: table;
+  margin: 0 auto;
+}
+
+.icon {
+  width: 65px;
+}
+
+.rounded-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.button {
+  margin: 10px 0;
+  border: none;
+  box-shadow: 0px 0px 16px -6px rgba(0, 0, 0, .5);
+  color: #fff;
+  font-size: 1.25rem;
+  letter-spacing: 1px;
+  outline: none;
+  cursor: pointer;
+}
+
+.rounded-button-01 {
+  width: 160px;
+  height: 50px;
+  border-radius: 5px;
+  background-color: #4285f4;
+}
+
+@media screen and (max-width: 480px) {
+  #container {
+    height: auto;
+    align-items: flex-start;
+  }
+  .rounded-buttons {
+    justify-content: center;
+  }
+}

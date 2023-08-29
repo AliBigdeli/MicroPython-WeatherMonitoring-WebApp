@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>MicroPython Weather Monitoring</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600" rel="stylesheet">
+    <link href="/static/styles.css" rel="stylesheet">
+</head>
+
+<body>
+    <h1>MicroPython Weather Monitoring</h1>
+    <div class="container">
+        <div class="data temperature">
+            <div class="side-by-side icon">
+                <svg enable-background="new 0 0 19.438 54.003" height=54.003px id=Layer_1 version=1.1
+                    viewBox="0 0 19.438 54.003" width=19.438px x=0px xml:space=preserve xmlns=http://www.w3.org/2000/svg
+                    xmlns:xlink=http://www.w3.org/1999/xlink y=0px>
+                    <g>
+                        <path d="M11.976,8.82v-2h4.084V6.063C16.06,2.715,13.345,0,9.996,0H9.313C5.965,0,3.252,2.715,3.252,6.063v30.982
+C1.261,38.825,0,41.403,0,44.286c0,5.367,4.351,9.718,9.719,9.718c5.368,0,9.719-4.351,9.719-9.718
+c0-2.943-1.312-5.574-3.378-7.355V18.436h-3.914v-2h3.914v-2.808h-4.084v-2h4.084V8.82H11.976z M15.302,44.833
+c0,3.083-2.5,5.583-5.583,5.583s-5.583-2.5-5.583-5.583c0-2.279,1.368-4.236,3.326-5.104V24.257C7.462,23.01,8.472,22,9.719,22
+s2.257,1.01,2.257,2.257V39.73C13.934,40.597,15.302,42.554,15.302,44.833z" fill=#F29C21 />
+                    </g>
+                </svg>
+            </div>
+            <div class="side-by-side text">Temperature</div>
+            <div class="side-by-side reading">
+                <span id="temperature-data"> null</span>
+                <span class="superscript">&deg;C</span>
+            </div>
+        </div>
+        <div class="data humidity">
+            <div class="side-by-side icon">
+                <svg enable-background="new 0 0 29.235 40.64" height=40.64px id=Layer_1 version=1.1
+                    viewBox="0 0 29.235 40.64" width=29.235px x=0px xml:space=preserve xmlns=http://www.w3.org/2000/svg
+                    xmlns:xlink=http://www.w3.org/1999/xlink y=0px>
+                    <path d="M14.618,0C14.618,0,0,17.95,0,26.022C0,34.096,6.544,40.64,14.618,40.64s14.617-6.544,14.617-14.617
+C29.235,17.95,14.618,0,14.618,0z M13.667,37.135c-5.604,0-10.162-4.56-10.162-10.162c0-0.787,0.638-1.426,1.426-1.426
+c0.787,0,1.425,0.639,1.425,1.426c0,4.031,3.28,7.312,7.311,7.312c0.787,0,1.425,0.638,1.425,1.425
+C15.093,36.497,14.455,37.135,13.667,37.135z" fill=#3C97D3 />
+                </svg>
+            </div>
+            <div class="side-by-side text">Humidity</div>
+            <div class="side-by-side reading">
+                <span id="humidity-data"> null</span>
+                <span class="superscript">%</span>
+            </div>
+        </div>
+        <div class="data light">
+            <div class="side-by-side icon">
+                <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="70px" 
+                    viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+                    <g>
+                        <path fill="#FFE75A" d="M49.958,28.688c-9.278,0-16.804,7.525-16.804,16.81c0,3.056,0.857,5.898,2.24,8.391
+		c4.126,7.438,5.221,11.613,5.896,15.654c0.564,3.387,1.344,4.174,3.902,4.174c1.091,0,2.869,0,4.766,0c1.901,0,3.683,0,4.767,0
+		c2.563,0,3.344-0.787,3.907-4.174c0.677-4.043,1.771-8.219,5.896-15.654c1.388-2.492,2.24-5.334,2.24-8.391
+		C66.771,36.212,59.245,28.688,49.958,28.688z" />
+                        <path fill="#FFE75A" d="M55.971,74.934H43.958c-0.5,0-0.903,0.402-0.903,0.9v0.602c0,0.496,0.403,0.9,0.903,0.9h12.013
+		c0.493,0,0.897-0.404,0.897-0.9v-0.602C56.87,75.336,56.464,74.934,55.971,74.934z" />
+                        <path fill="#FFE75A" d="M55.971,78.537H43.958c-0.5,0-0.903,0.4-0.903,0.9v0.602c0,0.496,0.403,0.898,0.903,0.898h12.013
+		c0.493,0,0.897-0.402,0.897-0.898v-0.602C56.87,78.938,56.464,78.537,55.971,78.537z" />
+                        <path fill="#FFE75A" d="M55.971,82.141H43.958c-0.5,0-0.903,0.402-0.903,0.9v0.602c0,0.498,0.403,0.9,0.903,0.9h12.013
+		c0.493,0,0.897-0.402,0.897-0.9v-0.602C56.87,82.543,56.464,82.141,55.971,82.141z" />
+                        <path fill="#FFE75A"
+                            d="M45.458,85.744h9.013c0,1.801-2.406,3.002-4.513,3.002C47.861,88.746,45.458,87.545,45.458,85.744z" />
+                        <path fill="#FFE75A" d="M69.264,16.854c1.532-2.683-2.605-5.092-4.15-2.414c-0.809,1.399-6.662,11.541-6.662,11.541l4.162,2.402
+		c0,0,5.199-9.017,6.646-11.518c0.003-0.001,0.003-0.003,0.003-0.003L69.264,16.854L69.264,16.854z" />
+                        <path fill="#FFE75A"
+                            d="M78.633,26.247L78.633,26.247L78.63,26.25c-0.008,0.001-0.008,0.001-0.008,0.001
+		C76.51,27.472,67.456,32.7,67.456,32.7l2.397,4.16c0,0,9.076-5.239,11.188-6.458C83.727,28.854,81.316,24.713,78.633,26.247z" />
+                        <path fill="#FFE75A" d="M52.452,11.071c0,0.729,0,12.812,0,12.812h-4.806c0,0,0-12.084,0-12.812
+		C47.646,7.973,52.452,7.973,52.452,11.071z" />
+                        <path fill="#FFE75A" d="M30.737,16.854c-1.532-2.683,2.606-5.092,4.152-2.414c0.808,1.399,6.661,11.541,6.661,11.541l-4.158,2.402
+		c0,0-5.208-9.017-6.652-11.518c0-0.001,0-0.003,0-0.003L30.737,16.854L30.737,16.854z" />
+                        <path fill="#FFE75A"
+                            d="M21.371,26.247L21.371,26.247v0.003c0.007,0.001,0.007,0.001,0.007,0.001
+		c2.116,1.221,11.167,6.449,11.167,6.449l-2.402,4.16c0,0-9.076-5.239-11.187-6.458C16.273,28.854,18.683,24.713,21.371,26.247z" />
+                    </g>
+                </svg>
+            </div>
+            <div class="side-by-side text">Light</div>
+            <div class="side-by-side reading">
+                <span id="light-data"> null</span>
+                <span class="superscript">%</span>
+            </div>
+        </div>
+        <div class="data switch">
+            <button onclick="toggleSwitch()" class="button rounded-button-01">Light Switch</button>
+            <p>current state: <span id="switch-state">OFF</span></p>
+        </div>
+    </div>
+    <script src="/static/scripts.js"></script>
+</body>
+
+</html>
