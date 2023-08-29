@@ -3,6 +3,9 @@ from machine import ADC, Pin
 from ldr_reader import LDR
 import dht
 
+
+DEBUG = False
+
 photocell_pin = LDR(33)
 relay_pin = Pin(26, Pin.OUT)
 dht11_pin = Pin(5, Pin.IN)
@@ -60,4 +63,7 @@ def not_found(request):
     return {'error': 'resource not found'}, 404
 
 
-app.run(debug=True, port=80)
+if DEBUG:
+    app.run(debug=True)
+else:
+    app.run(debug=False, port=80)
